@@ -1,0 +1,203 @@
+class Customer: #here we are defining the cutomer class
+    def __init__(self, name, email, phone_number, customer_id):
+        self.__name = name
+        self.__email = email
+        self.__phone_number = phone_number
+        self.__customer_id = customer_id
+        self.__reservation_list = []  # List to hold Reservation objects
+
+    # Getter methods
+    def get_name(self):
+        return self.__name
+
+    def get_email(self):
+        return self.__email
+
+    def get_phone_number(self):
+        return self.__phone_number
+
+    def get_customer_id(self):
+        return self.__customer_id
+
+    def get_reservation_list(self):
+        return self.__reservation_list
+
+    # Setter methods
+    def set_name(self, name):
+        self.__name = name
+
+    def set_email(self, email):
+        self.__email = email
+
+    def set_phone_number(self, phone_number):
+        self.__phone_number = phone_number
+
+    # Function to add a reservation to the reservation list
+    def add_reservation(self, reservation):
+        self.__reservation_list.append(reservation)
+
+    # Placeholder for other required functions
+    def update_contact_info(self, new_phone_number, new_email):
+        # This function updates the customer's contact information
+        pass
+#customer class ends
+
+#Reservation class starts here
+class Reservation:
+    def __init__(self, reservation_id, room_number, check_in_date, check_out_date, total_cost, customer_id):
+        self.__reservation_id = reservation_id
+        self.__room_number = room_number
+        self.__check_in_date = check_in_date
+        self.__check_out_date = check_out_date
+        self.__total_cost = total_cost
+        self.__customer_id = customer_id
+
+    # Getter methods
+    def get_reservation_id(self):
+        return self.__reservation_id
+
+    def get_room_number(self):
+        return self.__room_number
+
+    def get_check_in_date(self):
+        return self.__check_in_date
+
+    def get_check_out_date(self):
+        return self.__check_out_date
+
+    def get_total_cost(self):
+        return self.__total_cost
+
+    # Setter methods
+    def set_check_in_date(self, check_in_date):
+        self.__check_in_date = check_in_date
+
+    def set_check_out_date(self, check_out_date):
+        self.__check_out_date = check_out_date
+
+    def set_room_number(self, room_number):
+        self.__room_number = room_number
+
+    # Placeholder for other required functions
+    def modify_reservation(self, new_check_in_date, new_check_out_date):
+        # This function modifies the check-in and check-out dates
+        pass
+
+    def cancel_reservation(self):
+        # This function cancels the reservation
+        pass
+#reservations class stops here
+
+
+#room class starts here
+class Room:
+    def __init__(self, room_id, room_type, bed_count, price_per_night, is_available):
+        self.__room_id = room_id
+        self.__room_type = room_type  # This will use RoomType enum
+        self.__bed_count = bed_count
+        self.__price_per_night = price_per_night
+        self.__is_available = is_available
+
+    # Getter methods
+    def get_room_id(self):
+        return self.__room_id
+
+    def get_room_type(self):
+        return self.__room_type
+
+    def get_bed_count(self):
+        return self.__bed_count
+
+    def get_price_per_night(self):
+        return self.__price_per_night
+
+    def is_available(self):
+        return self.__is_available
+
+    # Setter methods
+    def set_room_type(self, room_type):
+        self.__room_type = room_type
+
+    def set_price_per_night(self, price):
+        self.__price_per_night = price
+
+    # Placeholder for other required functions
+    def update_availability(self, status):
+        # This function updates the availability of the room
+        pass
+#room class stops here
+
+#Payment class starts here
+class Payment:
+    def __init__(self, payment_id, amount, payment_method, payment_status, reservation_id):
+        self.__payment_id = payment_id
+        self.__amount = amount
+        self.__payment_method = payment_method  # This will use PaymentMethod enum
+        self.__payment_status = payment_status  # This will use PaymentStatus enum
+        self.__reservation_id = reservation_id
+
+    # Getter methods
+    def get_payment_id(self):
+        return self.__payment_id
+
+    def get_amount(self):
+        return self.__amount
+
+    def get_payment_method(self):
+        return self.__payment_method
+
+    def get_payment_status(self):
+        return self.__payment_status
+
+    # Setter methods
+    def set_amount(self, amount):
+        self.__amount = amount
+
+    def set_payment_status(self, payment_status):
+        self.__payment_status = payment_status
+
+    # Placeholder for other required functions
+    def process_payment(self):
+        # This function processes the payment
+        pass
+
+    def update_payment_method(self, new_payment_method):
+        # This function updates the payment method
+        pass
+#payment class stops here
+
+
+# Sample data based on Figure 1
+from datetime import date
+
+# Creating the Room object
+room1 = Room(room_id=101, room_type="Queen", bed_count=2, price_per_night=89.95, is_available=True)
+
+# Creating the Payment object
+payment1 = Payment(payment_id=123456, amount=201.48, payment_method="MasterCard", payment_status="Completed", reservation_id=52523687)
+
+# Creating the Reservation object
+reservation1 = Reservation(reservation_id=52523687,
+                           room_number=101,
+                           check_in_date=date(2010, 8, 22),
+                           check_out_date=date(2010, 8, 24),
+                           total_cost=201.48,
+                           customer_id=1)
+
+# Creating the Customer object
+customer1 = Customer(name="Ted Vera", email="tedvera@mac.com", phone_number="555-661-1110", customer_id=1)
+
+# Adding the reservation to the customer
+customer1.add_reservation(reservation1)
+
+# Displaying information for the customer and their reservation
+print("Customer Name:", customer1.get_name())
+print("Email:", customer1.get_email())
+print("Phone Number:", customer1.get_phone_number())
+
+
+print("Reservation ID:", reservation1.get_reservation_id())
+print("Room Number:", reservation1.get_room_number())
+print("Check-In Date:", reservation1.get_check_in_date())
+print("Check-Out Date:", reservation1.get_check_out_date())
+print("Total Cost: $", reservation1.get_total_cost())
